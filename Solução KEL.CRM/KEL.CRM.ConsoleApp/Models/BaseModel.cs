@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace KEL.CRM.ConsoleApp.Models
 {
-    internal class BaseModel
+    public class BaseModel
     {
+        public int Id { get; set; }
     }
 }

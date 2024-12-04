@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Moldels\" />
+    <Compile Remove="Moldels\**" />
+    <EmbeddedResource Remove="Moldels\**" />
+    <None Remove="Moldels\**" />
   </ItemGroup>
 
 </Project>
