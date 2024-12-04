@@ -16,15 +16,8 @@ namespace KEL.CRM.ConsoleApp.Views
             {
                 Console.WriteLine("Bem ao Sistema Lsmetro Orçamentos");
                 Console.WriteLine("Escolha Uma das Opçãos Abaixo:");
-                Console.WriteLine("1 - Dados Bancarios");
-                Console.WriteLine("2 - Endereço");
-                Console.WriteLine("3 - Cidade");
-                Console.WriteLine("4 - Estado");
-                Console.WriteLine("5 - Pais");
-                Console.WriteLine("6 - Cliente");
-                Console.WriteLine("7 - Produto");
-                Console.WriteLine("8 - Estoque");
-                Console.WriteLine("9 - Pedido");
+                Console.WriteLine("1 - Pais");
+                Console.WriteLine("2 - Cliente");
                 Console.WriteLine("0 - Sair");
                 Console.Write("Digite a Opção Desejada: ");
                 opcao = Convert.ToInt32(Console.ReadLine());
@@ -37,8 +30,12 @@ namespace KEL.CRM.ConsoleApp.Views
         {
             switch (opcao)
             {
-                
-                case 6:
+                case 1:
+                    PaisView paisView = new PaisView();
+                    paisView.ImprimirMenu();
+                    break;
+
+                case 2:
                     ClienteView clienteView = new ClienteView();
                     clienteView.ImprimirMenu();
                     break;
@@ -46,6 +43,7 @@ namespace KEL.CRM.ConsoleApp.Views
                 case 0:
                     Console.WriteLine("Saindo");
                     break;
+
                 default:
                     Console.WriteLine("Opçao Invalida");
                     break;
