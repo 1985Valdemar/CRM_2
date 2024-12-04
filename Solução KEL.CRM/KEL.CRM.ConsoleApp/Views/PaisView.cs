@@ -8,55 +8,56 @@ using System.Threading.Tasks;
 
 namespace KEL.CRM.ConsoleApp.Views
 {
-    public class ClienteView
+    public class PaisView
     {
+
         public void ImprimirMenu()
         {
             Console.Clear(); // Limpa a tela antes de imprimir o menu
             Console.WriteLine("\nLista de Clientes Cadastrados:");
 
             //****** VAI BUSCAR LISTA ******
-            ClienteRepository clienteRepository = new ClienteRepository();
+            PaisRepository paisRepository = new PaisRepository();
 
             //****** CRIANDO VARIAVEL PARA ARMAZENAR GetAll ******
-            var clientes = clienteRepository.GetAll();
+            var paises = paisRepository.GetAll();
 
             //****** VERIFICAÇÃO DA LISTA E TRAZENDO Clientes ******
-            if (clientes.Count > 0)
+            if (paises.Count > 0)
             {
-                foreach (var cliente in clientes)
+                foreach (var paise in paises)
                 {
-                    Console.WriteLine($"ID: {cliente.Id}, Nome: {cliente.Nome}, Sobrenome: {cliente.Sobrenome}, CPF: {cliente.Cpf}");
+                    Console.WriteLine($"Id: {paise.Id}, Nome: {paise.Nome}, População: {paise.Populacao}, Idioma: {paise.Idioma}");
                 }
             }
             else
             {
-                Console.WriteLine("Nenhum cliente cadastrado ainda.");
+                Console.WriteLine("Nenhum País cadastrado ainda.");
             }
 
             Console.WriteLine("\nCadastro Cliente\n");
 
-            Cliente cliente1 = new Cliente();
+            Pais pais = new Pais();
 
             //****** SOLICITANDO PARA DIGITAR ******
-            Console.Write("Digite Seu Nome: ");
-            cliente1.Nome = Console.ReadLine();
+            Console.Write("Digite Nome País: ");
+            pais.Nome = Console.ReadLine();
 
             //****** SOLICITANDO PARA DIGITAR ******
-            Console.Write("Digite Seu Sobrenome: ");
-            cliente1.Sobrenome = Console.ReadLine();
+            Console.Write("Digite População: ");
+            pais.Populacao = Convert.ToInt32(Console.ReadLine());
 
             //****** SOLICITANDO PARA DIGITAR ******
-            Console.Write("Digite Seu CPF: ");
-            cliente1.Cpf = Console.ReadLine();
+            Console.Write("Digite Seu Idioma: ");
+            pais.Idioma = Console.ReadLine();
 
             //****** CRIANDO cliente1 NO TXT ******
-            Console.WriteLine(clienteRepository.Create(cliente1));
+            Console.WriteLine(paisRepository.Create(pais));
 
             Console.WriteLine("\n***** Obrigado Por Cadastrar *****\n");
 
             //****** IMPRIMINDO DADOS EM TXT ******
-            Console.WriteLine(cliente1);
+            Console.WriteLine(pais);
         }
 
     }
