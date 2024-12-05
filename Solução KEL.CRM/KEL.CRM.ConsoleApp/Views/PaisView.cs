@@ -14,7 +14,7 @@ namespace KEL.CRM.ConsoleApp.Views
         public void ImprimirMenu()
         {
             Console.Clear(); // Limpa a tela antes de imprimir o menu
-            Console.WriteLine("\nLista de Clientes Cadastrados:");
+            Console.WriteLine("\nLista de País Cadastrados:");
 
             //****** VAI BUSCAR LISTA ******
             PaisRepository paisRepository = new PaisRepository();
@@ -35,7 +35,7 @@ namespace KEL.CRM.ConsoleApp.Views
                 Console.WriteLine("Nenhum País cadastrado ainda.");
             }
 
-            Console.WriteLine("\nCadastro Cliente\n");
+            Console.WriteLine("\nCadastro Pais\n");
 
             Pais pais = new Pais();
 
