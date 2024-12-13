@@ -1,4 +1,6 @@
-﻿using KEL.CRM.ConsoleApp.Views;
+﻿using KEL.CRM.ConsoleApp.Repositories;
+using KEL.CRM.ConsoleApp.Views;
 
 MenuPrincipal menuPrincipal = new MenuPrincipal();
-menuPrincipal.ImprimirMenu();
+menuPrincipal.MenuEscolha();
+

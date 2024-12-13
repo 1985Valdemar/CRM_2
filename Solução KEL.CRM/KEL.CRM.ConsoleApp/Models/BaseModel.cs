@@ -12,7 +12,7 @@ namespace KEL.CRM.ConsoleApp.Models
 
         public override string ToString()
         {
-            return $"Seu Id: {this.Id}";
+            return $"{this.Id}";
         }
     }
 }

@@ -9,7 +9,6 @@ namespace KEL.CRM.ConsoleApp.Repositories
 {
     public class PaisRepository
     {
-
         //INICIAR ID EM ZERO
         //_id para indicar que ficar nesta classe somente
         private static int _id = 0;
@@ -76,11 +75,19 @@ namespace KEL.CRM.ConsoleApp.Repositories
                     {
                         // Dividir a linha em campos
                         string[] dados = linha.Split(";");
+
+                        if (dados.Length < 4)
+                        {
+                            Console.WriteLine("Linha com dados insuficientes em países, ignorando...");
+                            continue;
+                        }
+
+
                         Pais pais = new Pais
                         {
                             Id = Convert.ToInt32(dados[0]),
                             Nome = dados[1],
-                            Populacao = Convert.ToInt32( dados[2]),
+                            Populacao = Convert.ToInt32(dados[2]),
                             Idioma = dados[3]
                         };
                         listaPaises.Add(pais);
@@ -110,7 +117,7 @@ namespace KEL.CRM.ConsoleApp.Repositories
                             {
                                 Id = id,
                                 Nome = dados[1],
-                                Populacao = Convert.ToInt32(dados[2]), 
+                                Populacao = Convert.ToInt32(dados[2]),
                                 Idioma = dados[3]
                             };
                         }

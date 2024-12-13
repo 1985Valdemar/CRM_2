@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace KEL.CRM.ConsoleApp.Models
 {
-    public class Pais : BaseModel
+    public class Estado : BaseModel
     {
         public string Nome { get; set; }
 
+        public string Sigla { get; set; }
         public int Populacao { get; set; }
 
-        public string Idioma { get; set; }
+        public Pais Pais { get; set; }
 
         public override string ToString()
         {
-            return $"{base.ToString()};{this.Nome};{this.Populacao};{this.Idioma}";
+            return $"{this.Id};{this.Nome};{this.Populacao};{this.Pais.Id}";
         }
 
     }

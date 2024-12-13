@@ -10,32 +10,19 @@ namespace KEL.CRM.ConsoleApp.Views
 {
     public class PaisView
     {
-
-        public void ImprimirMenu()
+        //****** METODO LIMPAR & MOSTRAR CABECALHO ******
+        private void Cabecalho(string titulo)
         {
             Console.Clear(); // Limpa a tela antes de imprimir o menu
-            Console.WriteLine("\nLista de País Cadastrados:");
+            Console.WriteLine($" {titulo}");// EXIBI O CABECALHO
+        }
+        private void CadastrarMenu()
+        {
+            //****** METODO LIMPAR & MOSTRAR CABECALHO ******
+            Cabecalho("Bem vindo Cadastro");
 
             //****** VAI BUSCAR LISTA ******
             PaisRepository paisRepository = new PaisRepository();
-
-            //****** CRIANDO VARIAVEL PARA ARMAZENAR GetAll ******
-            var paises = paisRepository.GetAll();
-
-            //****** VERIFICAÇÃO DA LISTA E TRAZENDO Clientes ******
-            if (paises.Count > 0)
-            {
-                foreach (var paise in paises)
-                {
-                    Console.WriteLine($"Id: {paise.Id}, Nome: {paise.Nome}, População: {paise.Populacao}, Idioma: {paise.Idioma}");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Nenhum País cadastrado ainda.");
-            }
-
-            Console.WriteLine("\nCadastro Pais\n");
 
             Pais pais = new Pais();
 
@@ -59,6 +46,93 @@ namespace KEL.CRM.ConsoleApp.Views
             //****** IMPRIMINDO DADOS EM TXT ******
             Console.WriteLine(pais);
         }
+        public void Menu()
+        {
+
+            int opcao = -1;
+            do
+            {
+                //****** VAI IMPRIMIR OPÇÕES ******
+                imprimiMenu();
+
+                //****** TRATANDO POSSIVEIS ERROS ******
+                try
+                {
+                    //****** LÉ DIGITADO USUARIO ******
+                    opcao = Convert.ToInt32(Console.ReadLine());
+
+                    EscolheMenu(opcao);
+                }
+                catch
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Digite Apenas Numeros");
+                }
+                //****** TEMPO QUE VAI MOSTRAR MSG *******
+                Thread.Sleep(2000);
+
+            } while (opcao != 0);
+        }
+        public void imprimiMenu()
+        {
+            //****** INSERINDO COR ******
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Bem ao Sistema Lsmetro Orçamentos");
+            Console.WriteLine("Escolha Uma das Opçãos Abaixo:");
+            Console.WriteLine("1 - Listar");
+            Console.WriteLine("2 - Cadastrar");
+            Console.WriteLine("0 - Sair");
+            Console.Write("Digite a Opção Desejada: ");
+        }
+        private void EscolheMenu(int opcao)
+        {
+            switch (opcao)
+            {
+                case 1:
+                    ListarPaises();
+                    break;
+                case 2:
+                    CadastrarMenu();
+                    break;
+                case 0:
+                    Console.WriteLine("Saindo");
+                    break;
+
+                default:
+                    Console.WriteLine("Opçao Invalida");
+                    break;
+
+            }
+            Thread.Sleep(2000);
+            Console.Clear();
+
+        }
+
+        private void ListarPaises()
+        {
+            //****** METODO LIMPAR & MOSTRAR CABECALHO ******
+            Cabecalho("Lista Paises");
+
+            //****** VAI BUSCAR LISTA ******
+            PaisRepository paisRepository = new PaisRepository();
+
+            //****** CRIANDO VARIAVEL PARA ARMAZENAR GetAll ******
+            var paises = paisRepository.GetAll();
+
+            //****** VERIFICAÇÃO DA LISTA E TRAZENDO PAISES ******
+            if (paises.Count > 0)
+            {
+                foreach (var pais in paises)
+                {
+                    Console.WriteLine(pais);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Nenhum País cadastrado ainda.");
+            }
+        }
+
 
     }
 }
