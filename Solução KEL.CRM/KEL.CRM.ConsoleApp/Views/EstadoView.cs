@@ -109,7 +109,7 @@ namespace KEL.CRM.ConsoleApp.Views
                 //****** VAI EXIBE LISTA DE ESTADOS ****** 
                 foreach (var estado in estados)
                 {
-                    Console.WriteLine(estado);
+                    Console.WriteLine($"{estado.Id} - {estado.Nome} ({estado.Sigla}), População: {estado.Populacao}, País ID: {estado.Pais.Id}");
                 }
             }
         }
@@ -161,10 +161,10 @@ namespace KEL.CRM.ConsoleApp.Views
             }
             else
             {
-                // Exibe a lista de dados bancários
+                // Exibe a lista de estados
                 foreach (var estado in estados)
                 {
-                    Console.WriteLine(estado);
+                    Console.WriteLine($"{estado.Id} - {estado.Nome} ({estado.Sigla}), População: {estado.Populacao}, País ID: {estado.Pais.Id}");
                 }
             }
         }
@@ -231,7 +231,7 @@ namespace KEL.CRM.ConsoleApp.Views
             Console.WriteLine("\n***** Obrigado por cadastrar *****\n");
 
             //****** IMPRIMINDO DADOS EM TXT ******
-            Console.WriteLine(estado);
+            Console.WriteLine($"{estado.Id} - {estado.Nome} ({estado.Sigla}), População: {estado.Populacao}, País ID: {estado.Pais.Id}");
         }
 
         internal void ExibirListaDeEstados(List<Estado> estados)
