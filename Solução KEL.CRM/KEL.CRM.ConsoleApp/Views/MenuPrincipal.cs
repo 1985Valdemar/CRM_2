@@ -8,52 +8,54 @@ namespace KEL.CRM.ConsoleApp.Views
 {
     public class MenuPrincipal
     {
-
-        public void ImprimirMenu()
+        public void MenuEscolha()
         {
             int opcao = 0;
             do
             {
-                Console.WriteLine("Bem ao Sistema Lsmetro Orçamentos");
-                Console.WriteLine("Escolha Uma das Opçãos Abaixo:");
-                Console.WriteLine("1 - Dados Bancarios");
-                Console.WriteLine("2 - Endereço");
-                Console.WriteLine("3 - Cidade");
-                Console.WriteLine("4 - Estado");
-                Console.WriteLine("5 - Pais");
-                Console.WriteLine("6 - Cliente");
-                Console.WriteLine("7 - Produto");
-                Console.WriteLine("8 - Estoque");
-                Console.WriteLine("9 - Pedido");
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Bem-vindo ao Sistema Lsmetro Orçamentos");
+                Console.WriteLine("Escolha uma das opções abaixo:");
+                Console.WriteLine("1 - Menu Países");
+                Console.WriteLine("2 - Menu Estados");
                 Console.WriteLine("0 - Sair");
-                Console.Write("Digite a Opção Desejada: ");
-                opcao = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Digite a opção desejada: ");
+
+                //****** VAI CONVERTER STRING EM INT ******
+                if (!int.TryParse(Console.ReadLine(), out opcao))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    Thread.Sleep(2000);
+                    continue;
+                }
 
                 EscolheMenu(opcao);
 
             } while (opcao != 0);
         }
-        public void EscolheMenu(int opcao)
+        private void EscolheMenu(int opcao)
         {
             switch (opcao)
             {
-                
-                case 6:
-                    ClienteView clienteView = new ClienteView();
-                    clienteView.ImprimirMenu();
+                case 1:
+                    PaisView paisView = new PaisView();
+                    paisView.Menu();
                     break;
-                
+                case 2:
+                    EstadoView estadoView = new EstadoView();
+                    estadoView.Menu();
+                    break;
                 case 0:
-                    Console.WriteLine("Saindo");
+                    Console.WriteLine("Saindo...");
                     break;
                 default:
-                    Console.WriteLine("Opçao Invalida");
+                    Console.WriteLine("Opção inválida. Tente novamente.");
                     break;
-
             }
             Thread.Sleep(2000);
             Console.Clear();
         }
-
     }
 }

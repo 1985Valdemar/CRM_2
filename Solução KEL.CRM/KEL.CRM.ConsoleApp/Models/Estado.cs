@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 
 namespace KEL.CRM.ConsoleApp.Models
 {
-    public class Cliente:BaseModel
+    public class Estado : BaseModel
     {
-        //DECLARANDO PROPRIEDADE PARA USAR
         public string Nome { get; set; }
-        public string Sobrenome { get; set; }
-        public string Cpf { get; set; }
+
+        public string Sigla { get; set; }
+        public int Populacao { get; set; }
+
+        public Pais Pais { get; set; }
 
         public override string ToString()
         {
-            return $"Nome: {this.Nome}; Sobrenome: {this.Sobrenome}; Cpf: {this.Cpf}";
+            return $"{this.Id};{this.Nome};{this.Populacao};{this.Pais.Id}";
         }
+
     }
 }

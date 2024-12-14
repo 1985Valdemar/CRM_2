@@ -17,9 +17,11 @@ namespace KEL.CRM.ConsoleApp.Views
 
             //****** VAI BUSCAR LISTA ******
             ClienteRepository clienteRepository = new ClienteRepository();
+
+            //****** CRIANDO VARIAVEL PARA ARMAZENAR GetAll ******
             var clientes = clienteRepository.GetAll();
 
-            //****** VERIFICAÇÃO DA LISTA E TRAZENDO Clientes******
+            //****** VERIFICAÇÃO DA LISTA E TRAZENDO Clientes ******
             if (clientes.Count > 0)
             {
                 foreach (var cliente in clientes)
@@ -36,20 +38,24 @@ namespace KEL.CRM.ConsoleApp.Views
 
             Cliente cliente1 = new Cliente();
 
-            // Obtendo dados do cliente
+            //****** SOLICITANDO PARA DIGITAR ******
             Console.Write("Digite Seu Nome: ");
             cliente1.Nome = Console.ReadLine();
 
+            //****** SOLICITANDO PARA DIGITAR ******
             Console.Write("Digite Seu Sobrenome: ");
             cliente1.Sobrenome = Console.ReadLine();
 
+            //****** SOLICITANDO PARA DIGITAR ******
             Console.Write("Digite Seu CPF: ");
             cliente1.Cpf = Console.ReadLine();
 
-            // Cadastra o cliente
+            //****** CRIANDO cliente1 NO TXT ******
             Console.WriteLine(clienteRepository.Create(cliente1));
 
             Console.WriteLine("\n***** Obrigado Por Cadastrar *****\n");
+
+            //****** IMPRIMINDO DADOS EM TXT ******
             Console.WriteLine(cliente1);
         }
 
