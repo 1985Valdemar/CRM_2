@@ -1,4 +1,5 @@
-﻿using KEL.CRM.ConsoleApp.Models;
+﻿using KEL.CRM.ConsoleApp.Common;
+using KEL.CRM.ConsoleApp.Models;
 using KEL.CRM.ConsoleApp.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,9 @@ namespace KEL.CRM.ConsoleApp.Views
 {
     public class EstadoView
     {
-        //****** METODO LIMPAR & MOSTRAR CABECALHO ******
-        private void Cabecalho(string titulo)
-        {
-            Console.Clear(); // Limpa a tela antes de imprimir o cabeçalho
-            Console.WriteLine($" {titulo}"); // Exibe o cabeçalho
-        }
-
         public void imprimirMenu()
         {
+            MetodosView.Limpar();
             Console.ForegroundColor = ConsoleColor.Blue; // Define a cor do texto
             Console.WriteLine("Bem-vindo ao Sistema Lsmetro Orçamentos");
             Console.WriteLine("Escolha uma das opções abaixo:");
@@ -56,8 +51,8 @@ namespace KEL.CRM.ConsoleApp.Views
                 }
 
                 //****** TEMPO QUE VAI MOSTRAR MSG *******
-                Thread.Sleep(2000);
-                Console.Clear(); // Limpa a tela antes de exibir o próximo menu
+                MetodosView.Limpar();
+
             } while (opcao != 0);
         }
 
@@ -83,14 +78,13 @@ namespace KEL.CRM.ConsoleApp.Views
                     break;
             }
             //****** TEMPO QUE VAI MOSTRAR MSG *******
-            Thread.Sleep(2000);
-            Console.Clear(); // Limpa a tela após exibir a opção escolhida
+            MetodosView.Limpar();
         }
 
         private void ListarEstados()
         {
             //****** METODO LIMPAR & MOSTRAR CABECALHO ******
-            Cabecalho("Lista de Estados");
+            MetodosView.Cabecalho("Lista de Estados");
 
             //****** CRIANDO OBJETO estadoRepository PARA USAR ******
             EstadoRepository estadoRepository = new EstadoRepository();
@@ -117,7 +111,7 @@ namespace KEL.CRM.ConsoleApp.Views
         private void ListarEstadosPorPais()
         {
             //****** METODO LIMPAR & MOSTRAR CABECALHO ******
-            Cabecalho("Lista de Estados por País");
+            MetodosView.Cabecalho("Lista de Estados por País");
 
             //****** CRIANDO OBJETO paisRepository PARA USAR ******
             PaisRepository paisRepository = new PaisRepository();
@@ -129,6 +123,7 @@ namespace KEL.CRM.ConsoleApp.Views
             //****** VERIFICA E TRAZ OS DADOS ******
             if (paises == null || paises.Count == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red; // Define a cor do texto para vermelho
                 Console.WriteLine("Nenhum país cadastrado. Cadastre um país antes de listar estados.");
                 return;
             }
@@ -143,6 +138,7 @@ namespace KEL.CRM.ConsoleApp.Views
             Console.Write("Digite o número do país: ");
             if (!int.TryParse(Console.ReadLine(), out int paisIndex) || paisIndex <= 0 || paisIndex > paises.Count)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Entrada inválida. Operação cancelada.");
                 return;
             }
@@ -157,6 +153,7 @@ namespace KEL.CRM.ConsoleApp.Views
             //****** VERIFICA E TRAZ OS DADOS ******
             if (estados == null || estados.Count == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Nenhum estado cadastrado para o país {paisSelecionado.Nome}.");
             }
             else
@@ -172,7 +169,7 @@ namespace KEL.CRM.ConsoleApp.Views
         private void CadastrarMenu()
         {
             //****** METODO LIMPAR & MOSTRAR CABECALHO ******
-            Cabecalho("Cadastro de Estado");
+            MetodosView.Cabecalho("Cadastro de Estado");
 
             //****** CRIANDO OBJETO paisRepository PARA USAR ******
             PaisRepository paisRepository = new PaisRepository();
@@ -184,6 +181,7 @@ namespace KEL.CRM.ConsoleApp.Views
             //****** VERIFICA E TRAZ OS DADOS ******
             if (paises == null || paises.Count == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Nenhum país cadastrado. Cadastre um país antes de cadastrar um estado.");
                 return;
             }
@@ -204,6 +202,7 @@ namespace KEL.CRM.ConsoleApp.Views
             Console.Write("Digite a População do Estado: ");
             if (!int.TryParse(Console.ReadLine(), out int populacao))
             {
+                Console.ForegroundColor = ConsoleColor.Red; // Define a cor do texto para vermelho
                 Console.WriteLine("População inválida. Operação cancelada.");
                 return;
             }
@@ -220,6 +219,7 @@ namespace KEL.CRM.ConsoleApp.Views
             Console.Write("Digite o número do país: ");
             if (!int.TryParse(Console.ReadLine(), out int paisIndex) || paisIndex < 1 || paisIndex > paises.Count)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("País inválido. Operação cancelada.");
                 return;
             }
