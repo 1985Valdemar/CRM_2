@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Common\**" />
     <Compile Remove="Moldels\**" />
+    <EmbeddedResource Remove="Common\**" />
     <EmbeddedResource Remove="Moldels\**" />
+    <None Remove="Common\**" />
     <None Remove="Moldels\**" />
   </ItemGroup>
 
