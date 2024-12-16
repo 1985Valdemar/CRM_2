@@ -1,4 +1,5 @@
-﻿using KEL.CRM.ConsoleApp.Models;
+﻿using KEL.CRM.ConsoleApp.Common;
+using KEL.CRM.ConsoleApp.Models;
 using KEL.CRM.ConsoleApp.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,10 @@ namespace KEL.CRM.ConsoleApp.Views
 {
     public class PaisView
     {
-        //****** METODO LIMPAR & MOSTRAR CABECALHO ******
-        private void Cabecalho(string titulo)
-        {
-            Console.Clear(); // Limpa a tela antes de imprimir o menu
-            Console.WriteLine($" {titulo}");// EXIBI O CABECALHO
-        }
         private void CadastrarMenu()
         {
             //****** METODO LIMPAR & MOSTRAR CABECALHO ******
-            Cabecalho("Bem vindo Cadastro");
+            MetodosView.Cabecalho("Bem vindo Cadastro");
 
             //****** VAI BUSCAR LISTA ******
             PaisRepository paisRepository = new PaisRepository();
@@ -69,12 +64,13 @@ namespace KEL.CRM.ConsoleApp.Views
                     Console.WriteLine("Digite Apenas Numeros");
                 }
                 //****** TEMPO QUE VAI MOSTRAR MSG *******
-                Thread.Sleep(2000);
+                MetodosView.Limpar();
 
             } while (opcao != 0);
         }
         public void imprimiMenu()
         {
+            MetodosView.Limpar();
             //****** INSERINDO COR ******
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Bem ao Sistema Lsmetro Orçamentos");
@@ -103,15 +99,14 @@ namespace KEL.CRM.ConsoleApp.Views
                     break;
 
             }
-            Thread.Sleep(2000);
-            Console.Clear();
+            MetodosView.Limpar();
 
         }
 
         private void ListarPaises()
         {
             //****** METODO LIMPAR & MOSTRAR CABECALHO ******
-            Cabecalho("Lista Paises");
+            MetodosView.Cabecalho("Lista Paises");
 
             //****** VAI BUSCAR LISTA ******
             PaisRepository paisRepository = new PaisRepository();
